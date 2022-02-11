@@ -1,0 +1,28 @@
+### aws cli #####
+
+apt update
+apt install awscli
+   
+ ####kops installation ##
+
+ curl -LO https://github.com/kubernetes/kops/releases/download/$(curl -s https://api.github.com/repos/kubernetes/kops/releases/latest | grep tag_name | cut -d '"' -f 4)/kops-linux-amd64
+chmod +x kops-linux-amd64
+mv kops-linux-amd64 kops
+mv kops /bin/
+sudo mv kops /bin/
+
+
+
+### install kubectl  ####
+
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+
+ chmod +x kubectl
+ mv kubectl /bin
+
+kops create cluster --name=mykube.k8s.local --state=s3://mykops1123 --zones=ap-south-1a --node-count=2 --node-size=t2.small --master-size=t2.small --yes
+
+kops validate cluster --state=s3://mykops123
+
+
+kops delete cluster --name=kube.k8s.local --state=s3://mykops123 --yes

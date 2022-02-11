@@ -1,0 +1,138 @@
+    1  ping google.com
+    2  docker ps
+    3  docker ps -q
+    4  docker stop ($docker ps -q)
+    5  docker stop $docker ps -q
+    6  docker stop $(docker ps -q)
+    7  history
+    8  docker volume ls
+    9  docker run -d --name app03 --client app01 httpd
+   10  docker run -d --name app03 --connect app01 httpd
+   11  docker run --help
+   12  docker run -d --link app03 --connect app01 httpd
+   13  docker run -d --name app03 --link app01 httpd
+   14  docker run -d --name app04 --link app01 httpd
+   15  docker run app01
+   16  docker container start app01
+   17  docker run -d --name app04 --link app01 httpd
+   18  docker run -d --name app05 --link app01 httpd
+   19  docker exec -it app05
+   20  docker exec -it app05 bash
+   21  docker ps
+   22  docker stop $(docker ps-a)
+   23  docker stop $(docker ps-q)
+   24  history
+   25  docker stop $(docker ps -q)
+   26  wget https://www.free-css.com/assets/files/free-css-templates/download/page275/elegant.zip
+   27  ls
+   28  apt install unzip -y
+   29  unzip elegant.zip
+   30  ls
+   31  vi Dockerfile
+   32  cd Elegant
+   33  ls
+   34  tar -czvf web.tgz .
+   35  ls
+   36  cd ..
+   37  ls
+   38  vi Dockerfile
+   39  docker container
+   40  docker ps
+   41  docker build -t myapp
+   42  cp Dockerfile ../
+   43  ls ../
+   44  docker build -t myapp
+   45  pwd
+   46  docker build Dockerfile -t myapp
+   47  docker build -t myapp
+   48  ls
+   49  cd Elegant
+   50  ls
+   51  mv web.tgz ..
+   52  cd ..
+   53  ls
+   54  docker build -t myapp:v1 .
+   55  vi Dockerfile
+   56  docker build -t myapp:v1 .
+   57  mkdit temp
+   58  mkdir /temp
+   59  mkdir app
+   60  mv Dockerfile web.tgz app
+   61  cd app
+   62  ls
+   63  docker build -t myapp:v1 .
+   64  docker ps
+   65* docker image
+   66  docker run -d myapp -p 8090:80 myapp:2
+   67  cd ..
+   68  docker run -d myapp -p 8090:80 myapp:2
+   69  docker run -d myapp:v1 -p 8090:80 myapp:2
+   70  docker run -d myapp:v1
+   71  docker ps
+   72  docker run -d myapp:v1 -p 8090:80
+   73  docker ps
+   74  docker inspect priceless_newton
+   75  docker ps
+   76  docker ps -a
+   77  docker rm https
+   78  docker rm httpd
+   79  docker ps
+   80  docker ps -a
+   81  docker rm app04
+   82  docker ps
+   83  docker ps -a
+   84  docker rm silly_noyce
+   85  docker rm hungry_visvesvaraya
+   86  docker ps
+   87  docker run -d --name newapp -p 8090:80  myapp:v5
+   88  docker run -d --name newapp -p 8090:80  myapp:v1
+   89  docker ps
+   90  docker exec -t newapp bash
+   91  ls
+   92  cd app
+   93  ls
+   94  cd ..
+   95  history
+   96  ls
+   97  mkdir app2
+   98  cd app
+   99  ls
+  100  cp Dockerfile web.tgz app2
+  101  cp Dockerfile web.tgz ..app2
+  102  cp web.tgz ../
+  103  ls
+  104  cd ..
+  105  ls
+  106  cd app
+  107  cp Dockerfile web.tgz ../app2
+  108  cd ..
+  109  ls
+  110  rm web.tgz
+  111  ls
+  112  cd app2
+  113  ls
+  114  vi Dockerfile
+  115  ls
+  116  docker build -t myapp:v2
+  117  cd ..
+  118  docker build -t myapp:v2
+  119  cd app2
+  120  ls
+  121* vi Dockerfile .
+  122  docker build -t myapp:v2 .
+  123  docker ps
+  124  docker images
+  125  docker run -d --name newapp -p 8090:80  myapp:v1
+  126  docker run -d --name newapp2 -p 8095:80  myapp:v2
+  127  docker exec -it newapp2 bash
+  128  vi Dockerfile
+  129  sudo chmod +x /usr/local/bin/docker-compose
+  130  docker-compose
+  131  mkdir new-app/
+  132  ls
+  133  cd new-app/
+  134  docker images
+  135  vi docker-compose.yaml
+  136  docker-compose up
+  137  docker-compose down
+  138  history

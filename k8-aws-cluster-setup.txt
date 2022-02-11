@@ -1,0 +1,245 @@
+### aws cli #####
+
+apt update
+apt install awscli
+   
+ ####kops installation ##
+
+ curl -LO https://github.com/kubernetes/kops/releases/download/$(curl -s https://api.github.com/repos/kubernetes/kops/releases/latest | grep tag_name | cut -d '"' -f 4)/kops-linux-amd64
+chmod +x kops-linux-amd64
+mv kops-linux-amd64 kops
+mv kops /bin/
+sudo mv kops /bin/
+
+
+
+### install kubectl  ####
+
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+
+ chmod +x kubectl
+ mv kubectl /bin
+
+kops create cluster --name=mykube.k8s.local --state=s3://k8bucket --zones=ap-south-1a --node-count=2 --node-size=t2.small --master-size=t2.small --yes
+
+kops validate cluster --state=s3://k8bucket
+
+
+kops delete cluster --name=mykube.k8s.local --state=s3://k8bucket --yes
+
+##########################################################################################################
+
+kubectl get nodes
+   61  kubectl get pods
+   62  kubectl get pod
+   63  kubectl get po
+   64  kubectl run mypod --image=nginx:latest --port 80
+   65  kubectl get pod
+   66  kubectl describe pod mypod
+   67  kubectl get nodes
+   68  kubectl describe nodes server
+   69  kubectl describe nodes server | grep "Taint"
+   70  kubectl describe nodes node1 | grep "Taint"
+   71  kubectl describe nodes node2 | grep "Taint"
+   72  kubectl get pod
+   73  kubectl get pod -o wide
+   74  kubectl exec -it mypod -- l
+   75  kubectl exec -it mypod -- bash
+   76  mkdir myapp
+   77  cd myapp/
+   78  kubectl get pod -n kube-system
+   79  kubectl get namespaces
+   80  kubectl get pod -n kube-system
+   81  kubectl get pod
+   82  kubectl logs mypod
+   83  vi pod.yaml
+   84  kubectl get pod
+   85  kubectl delete pod mypod
+   86  ls
+   87  kubectl create -f pod.yaml
+   88  vi pod.yaml
+   89  kubectl create -f pod.yaml
+   90  kubectl get pod
+   91  kubectl describe pod mypod
+   92  kubectl get pod
+   93  kubectl describe pod mypod
+   94  watch kubectl get pod
+   95  kubectl get pod
+   96  kubectl exec -it mypod -c con1 -- bash
+   97  kubectl exec -it mypod -c con2 -- bash
+   98  kubectl logs mypod -c con1
+   99  kubectl logs mypod -c con2
+  100  kubectl get pod
+  101  vi pod.yaml
+  102  vi mypod-svc.yaml
+  103  vi pod.yaml
+  104  kubectl delete pod mypod
+  105  kubectl create -f pod.yaml
+  106  vi pod.yaml
+  107  kubectl apply -f pod.yaml
+  108  kubectl get pod
+  109  kubectl get service
+  110  kubectl delete -f pod.yaml
+  111  vi pod.yaml
+
+kubectl create -f mysql.yaml
+  151  vi mysql.yaml
+  152  kubectl apply -f mysql.yaml
+  153  kubectl get pod
+  154  kubectl get svc
+  155  vi mysql.yaml
+  156  kubectl delete -f mysql.yaml
+  157  kubectl get pod
+  158  vi mysql.yaml
+  159  vi ../pod.yaml
+  160  vi wordpress.yaml
+  161  vi mysql.yaml
+  162  kubectl delete -f .
+  163  vi wordpress.yaml
+  164  kubectl get svc
+  165  kubectl create -f mysql.yaml
+  166  vi mysql.yaml
+  167  vi wordpress.yaml
+  168  kubectl create -f wordpress.yaml
+
+
+-----------------------------------------------------------
+
+https://github.com/aneeshansaricloud1/oracle
+
+
+
+279  vi rc-app.yaml
+  280  kubectl get pod --show-labels 
+  281  vi rc.yaml
+  282  vi pod.yaml 
+  283  vi rc.yaml
+  284  kubectl create -f rc.yaml 
+  285  kubectl get replicationcontrollers 
+  286  kubectl get pod
+  287  kubectl get pod --show-labels 
+  288  kubectl delete -f rc.yaml 
+  289  kubectl get pod --show-labels 
+  290  git add .
+  291  vi gitt.sh
+  292  chmod +x gitt.sh 
+  293  ./gitt.sh "added rc"
+  294  init 0
+  295  ls
+  296  cd myapp/
+  297  ls
+  298  vi rc.yaml 
+  299  cp rc.yaml replicaset.yaml
+  300  vi replicaset.yaml 
+  301  kubectl get pod
+  302  vi pod.yaml 
+  303  kubectl create -f pod.yaml 
+  304  kubectl get pod --show-labels 
+  305  vi replicaset.yaml 
+  306  kubectl create -f replicaset.yaml 
+  307  kubectl get replicasets.apps 
+  308  kubectl get rs
+  309  kubectl get pod
+  310  kubectl get pod --show-labels 
+  311  vi replicaset.yaml 
+  312  vi pod.yaml 
+  313  vi replicaset.yaml 
+  314  kubectl delete -f replicaset.yaml 
+  315  kubectl delete -f pod.yaml 
+  316  vi pod.yaml 
+  317  kubectl create -f pod.yaml 
+  318  kubectl create -f replicaset.yaml 
+  319  vi pod.yaml 
+  320  vi replicaset.yaml 
+  321  kubectl create -f replicaset.yaml 
+  322  vi replicaset.yaml 
+  323  kubectl create -f replicaset.yaml 
+  324  vi replicaset.yaml 
+  325  kubectl create -f replicaset.yaml 
+  326  vi replicaset.yaml 
+  327  kubectl delete -f replicaset.yaml 
+  328  kubectl create -f replicaset.yaml 
+  329  vi replicaset.yaml 
+  330  kubectl create -f replicaset.yaml 
+  331  kubectl delete -f replicaset.yaml 
+  332  kubectl create -f replicaset.yaml 
+  333  kubectl get rs
+  334  kubectl get pod
+  335  kubectl create -f replicaset.yaml 
+  336  kubectl delete -f replicaset.yaml 
+  337  kubectl create -f pod.yaml 
+  338  kubectl create -f replicaset.yaml 
+  339  kubectl get pod
+  340  kubectl get pod --show-labels 
+  341  vi replicaset.yaml 
+  342  vi pod.yaml 
+  343  vi replicaset.yaml 
+  344  kubectl delete -f .
+  345  kubectl get pod
+  346  cp rc.yaml deployment.yaml
+  347  vi deployment.yaml 
+  348  vi pod.yaml 
+  349  vi deployment.yaml 
+  350  kubectl get pod
+  351  kubectl create -f pod.yaml 
+  352  kubectl get pod
+  353  kubectl create -f deployment.yaml 
+  354  kubectl get deployments.apps 
+  355  kubectl get pod
+  356  kubectl get pod --show-labels 
+  357  vi deployment.yaml 
+  358  kubectl get rs
+  359  kubectl get deployments.apps 
+  360  kubectl get pod
+  361  vi deployment.yaml 
+  362  kubectl delete -f deployment.yaml 
+  363  vi deployment.yaml 
+  364  kubectl create -f deployment.yaml 
+  365  vi deployment.yaml 
+  366  kubectl delete -f deployment.yaml 
+  367  kubectl create -f deployment.yaml 
+  368  kubectl get deployments.apps 
+  369  kubectl get pod
+  370  kubectl get deployments.apps -o wide
+  371  kubectl scale deployment mydep --replicas=6
+  372  kubectl get deployments.apps -o wide
+  373  kubectl get pod
+  374  kubectl scale deployment mydep --replicas=3
+  375  kubectl get pod
+  376  kubectl edit deployments.apps mydep 
+  377  kubectl get pod
+  378  kubectl get rs
+  379  kubectl get deployments.apps 
+  380  kubectl describe deployments.apps mydep 
+  381  kubectl get deployments.apps -o wide
+  382  kubectl get service
+  383  kubectl set image deployments.apps  mydep con1=966145/myserver121:latest --record
+  384  kubectl get deployments.apps -o wide
+  385  kubectl get rs
+  386  kubectl get pod
+  387  kubectl set image deployments.apps  mydep con1=httpd:latest --record
+  388  kubectl get deployments.apps -o wide
+  389  kubectl get rs
+  390  kubectl rollout history deployment mydep 
+  391  kubectl rollout history deployment --revision=1
+  392  kubectl rollout undo deployment mydep --to-revision=2
+  393  kubectl get deployments.apps -o wide
+  394  kubectl get rs
+  395  kubectl rollout history deployment mydep 
+  396  kubectl rollout history deployment --revision=1
+  397  kubectl rollout undo deployment mydep --to-revision=1
+  398  kubectl get deployments.apps -o wide
+  399  kubectl get rs
+  400  #kubectl autoscale deployment mydep --min=
+  401  vi deployment.yaml 
+  402  kubectl autoscale deployment mydep --min=3 --max=10 --cpu-percent=70 --dry-run=client -o yaml 
+  403  kubectl autoscale deployment mydep --min=3 --max=10 --cpu-percent=70 --dry-run=client -o yaml >> deployment.yaml 
+  404  vi deployment.yaml 
+  405  kubectl autoscale deployment mydep --min=3 --max=10 --cpu-percent=70 
+  406  kubectl get hpa
+  407  history > commands.txt
+
+pod / deployment
+service / endpoints
+
+kubectl taint node ip-172-20-33-133.ap-south-1.compute.internal hdd=ssd:NoExecute

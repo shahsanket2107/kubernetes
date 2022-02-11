@@ -1,0 +1,67 @@
+OS: any
+## Install docker
+
+setup daemon
+cat > /etc/docker/daemon.json <<EOF
+{
+  "exec-opts": ["native.cgroupdriver=systemd"],
+  "log-driver": "json-file",
+  "log-opts": {
+    "max-size": "1024m"
+  },
+  "storage-driver": "overlay2"
+}
+EOF
+
+
+
+
+# Restart docker.
+systemctl daemon-reload
+systemctl restart docker
+
+
+########## install kubernetes cluster 
+
+apt-get update && apt-get install -y apt-transport-https
+
+curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
+
+cat <<EOF >/etc/apt/sources.list.d/kubernetes.list
+deb http://apt.kubernetes.io/ kubernetes-xenial main
+EOF
+
+apt-get update && apt-get install -y kubelet kubeadm kubectl 
+#################################################################
+Update cgroup driver in kubernetes( recmended is systemd Now V.1.15)
+vi /etc/systemd/system/kubelet.service.d/10-kubeadm.conf
+add following entries at last of 10-kubeadm.conf file
+Environment="cgroup-driver=systemd/cgroup-driver=cgroupfs"
+#########################################################
+
+kubeadm init --pod-network-cidr=10.244.0.0/16 --apiserver-advertise-address=192.168.1.20 
+
+
+ mkdir -p $HOME/.kube
+  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+Alternatively, if you are the root user, you can run:
+
+  export KUBECONFIG=/etc/kubernetes/admin.conf
+
+You should now deploy a pod network to the cluster.
+Run "kubectl apply -f [podnetwork].yaml" with one of the options listed at:
+  https://kubernetes.io/docs/concepts/cluster-administration/addons/
+
+Then you can join any number of worker nodes by running the following on each as root:
+
+kubeadm join 192.168.1.20:6443 --token fuwez7.p5hlp149ul37qovd \
+        --discovery-token-ca-cert-hash sha256:230d53a45a083658985673755f2394339c7e1b79227f18dc49711736d067da7c
+root@server:~#
+
+
+
+
+kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+sysctl net.bridge.bridge-nf-call-iptables=1 ( this is for flannel only )
